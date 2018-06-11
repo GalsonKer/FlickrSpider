@@ -20,4 +20,34 @@ FileFunction
  - MySQLController.py:数据库操作
  - WalkPhotoInfo.py:爬去图像信息并存储到本地数据库中
  
+Package&Version
+==
+ - beautifulsoup4    4.6.0
+ - bs4               0.0.1
+ - certifi           2018.4.16
+ - chardet           3.0.4
+ - flickrapi         2.4.0
+ - get               1.0.3
+ - idna              2.6
+ - lxml              4.2.1
+ - numpy             1.14.4
+ - oauthlib          2.1.0
+ - pandas            0.23.0
+ - pip               10.0.1
+ - post              1.0.2
+ - public            1.0.3
+ - PyMySQL           0.8.1
+ - python-dateutil   2.7.3
+ - pytz              2018.4
+ - query-string      1.0.2
+ - request           1.0.2
+ - requests          2.18.4
+ - requests-oauthlib 1.0.0
+ - requests-toolbelt 0.8.0
+ - selenium          3.12.0
+ - setuptools        39.2.0
+ - six               1.11.0
+ - urllib3           1.22
+ 
+ 
  **cs.liuxiaoqing@gmail.com**
