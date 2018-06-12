@@ -11,8 +11,8 @@ if __name__=="__main__":
         3 private photos visible to family
         4 private photos visible to friends & family
         5 completely private photos
-    '''
-    '''
+
+
     'hasGeo':
         if the value is "0" any photo that has not been geotagged 
     '''
