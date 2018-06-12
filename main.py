@@ -21,5 +21,5 @@ if __name__=="__main__":
     apiPsw = input('请输入账户密钥：')
     textStr = input('请输入搜索主题：')
     result = WalkPhotoInfo.getPhotosId(apiKey=apiKey, apiPsw=apiPsw,privacyFilter=1,
-                                       hasGeo=None, textStr="Hongcun",
+                                       hasGeo=None, textStr=textStr,
                                        tableName="PhotoData")
