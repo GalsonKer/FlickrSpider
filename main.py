@@ -14,7 +14,7 @@ if __name__=="__main__":
 
 
     'hasGeo':
-        if the value is "0" any photo that has not been geotagged 
+        if the value is "0" any photo that has not been geotagged.
     '''
 
     apiKey = input('请输入您的Flickr授权账号：')
