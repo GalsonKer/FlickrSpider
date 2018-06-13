@@ -7,12 +7,12 @@ class MySQLCommand(object):
     # 类的初始化
     def __init__(self,tableName):
         self.host = 'localhost'
-        self.port = 3306  # 端口号
-        self.user = 'root'  # 用户名
-        self.password = "lyp82nlf"  # 密码
-        self.db = "gsk"  # 库
-        self.Photo_table = tableName  # 表
-        self.charset ='utf8mb4'
+        self.port = 3306                 # 端口号
+        self.user = 'root'               # 用户名
+        self.password = "lyp82nlf"       # 密码
+        self.db = "gsk"                  # 库
+        self.Photo_table = tableName     # 表
+        self.charset ='utf8mb4'          # 编码使用utf8mb4可以存储emoji表情符号
 
         # 链接数据库
     def connectMysql(self):
