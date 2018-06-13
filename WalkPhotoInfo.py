@@ -17,6 +17,7 @@ def isCollection (flickr,photoId):
 def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
 
     savePath = 'D:\\ProgramData\\FlickrImage\\'
+    tagPattern = re.compile(r'<anhui>')
     flickr = flickrapi.FlickrAPI(apiKey, apiPsw,cache=True)
 
     #创建logger新对象
@@ -59,7 +60,7 @@ def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
             url = photo.get('url_o')
             if url != None:
                 photoId = re.split('/|_', url)[4]
-                photoInfo = GetPhotosInfo(flickr=flickr,photoId=photoId)
+                photoInfo = GetPhotosInfo(flickr=flickr,photoId=photoId,tag_pattern=tagPattern)
                 userName = photoInfo.getOwnerUsername()
                 realName = photoInfo.getOwnerRealname()
                 postDate = photoInfo.getPostDare();

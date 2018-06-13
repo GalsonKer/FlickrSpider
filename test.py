@@ -14,11 +14,21 @@ import shutil
 
 if __name__=="__main__":
 
-    apiKey = input('请输入flickr授权账号：')
-    apiPsw = input('请输入flickr账号密码：')
+    # apiKey = input('请输入flickr授权账号：')
+    # apiPsw = input('请输入flickr账号密码：')
+    apiKey = input('请输入Flickr授权账号：')
+    apiPsw = input('请输入授权账号密码：')
     flickr = flickrapi.FlickrAPI(apiKey, apiPsw, cache=True)
-    photoId = ""
+    photoId = "5154618461"
     savePath = 'D:\\ProgramData\\FlickrImage\\'
+    tagPattern = re.compile(r'<demo>')
+
+
+    photosInfo = GetPhotosInfo(flickr=flickr,photoId=photoId,tag_pattern=tagPattern)
+
+    tags = photosInfo.getPhotoTags()
+    print(tags)
+
 
     # mysql = MySQLController.MySQLCommand('demo')
     # mysql.connectMysql()
@@ -110,4 +120,3 @@ if __name__=="__main__":
     # url = 'https://farm2.staticflickr.com/1744/27643544677_3014f3d1f6_o.jpg'
     # r = DownloadImage.downLoadImg(url=url,imgName='demo',savePath=path)
     # logging.info(msg=r)
-    os.remove(savePath)

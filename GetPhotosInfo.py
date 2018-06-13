@@ -7,12 +7,12 @@ import re
 
 class GetPhotosInfo(object):
 
-    def __init__(self,flickr,photoId):
+    def __init__(self,flickr,photoId,tag_pattern):
         self.photoId = photoId
         self.flickr = flickr
         photoInfo = self.flickr.photos.getInfo(photo_id=photoId,format='json')
         self.info_dict = json.loads(photoInfo)
-
+        self.tagPattern = tag_pattern
 
     def getOwnerUsername(self):
         '''
@@ -87,9 +87,9 @@ class GetPhotosInfo(object):
 
     def getPhotoTags(self):
         '''
+        :param pattern是编译好的匹配正则对象，用来清洗标签
         :return:stat(0，表示没有标签;1，表示存在标签;2,表示出错;)
         '''
-
         tagDict = dict()
         try:
             tagList = self.info_dict['photo']['tags']['tag']
@@ -98,8 +98,11 @@ class GetPhotosInfo(object):
             if len(tagList)!=0:
                 tagDict['stat'] = 1
                 for tag in tagList:
-                    tagStr = tagStr + '<'+tag['raw']+'  '+'>'
+                    tagStr = tagStr + '<'+tag['raw']+'>'
+                if self.tagPattern==None:
                     tagDict['tagStr'] = tagStr
+                else:
+                    tagDict['tagStr'] = re.sub(self.tagPattern, '', tagStr)
 
             else:
                 tagDict['stat'] = 0
@@ -138,7 +141,7 @@ class GetPhotosInfo(object):
             for comment in comments_dict['comments']['comment']:
                 comments_str = comments_str + '<'+comment['_content']+'>'
             pattern = re.compile(r'\n|<a href=".+?</a>|&.+?;')
-            comments_s = re.sub(pattern, ' ', comments_str)
+            comments_s = re.sub(pattern, '', comments_str)
             commentsInfo['stat'] = 1
             commentsInfo['commentStr'] = comments_s
 
