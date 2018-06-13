@@ -14,10 +14,10 @@ import shutil
 
 if __name__=="__main__":
 
-    apiKey = "6be12fc2fd0cddc168176e3b15665ee8"
-    apiPsw = "9a4f579369984b69"
+    apiKey = input('请输入flickr授权账号：')
+    apiPsw = input('请输入flickr账号密码：')
     flickr = flickrapi.FlickrAPI(apiKey, apiPsw, cache=True)
-    photoId = "27662768879"
+    photoId = ""
     savePath = 'D:\\ProgramData\\FlickrImage\\'
 
     # mysql = MySQLController.MySQLCommand('demo')
