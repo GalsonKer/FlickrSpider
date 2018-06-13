@@ -147,5 +147,3 @@ class GetPhotosInfo(object):
             commentsInfo['commentStr'] = ''
 
         return commentsInfo
-
-
