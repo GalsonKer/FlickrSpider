@@ -1,8 +1,9 @@
 FlickrSpider
 ==
 @Author:GalsonKer
+**cs.liuxiaoqing@gmail.com**
 
- - SearchText:Hongcun 在flickr上获取关于主题的图片
+ - SearchText:输入搜索主题 在flickr上获取关于主题的图片
  
  - Data:图片、作者信息(作者昵称、真实姓名、地理位置、所处时区)、图片上传日期、图片拍摄地理位置、标签和评论
  
@@ -14,7 +15,7 @@ FlickrSpider
  
 FileFunction
 ==
- - Hongcun.py:执行主文件
+ - main.py:执行主文件
  - GetPhotosInfo.py:获取图像信息功能函数文件
  - DownloadImage.py:下载图片到本地
  - MySQLController.py:数据库操作
@@ -86,4 +87,3 @@ Package&Version
  - zope.interface      4.5.0
  
  
- **cs.liuxiaoqing@gmail.com**
