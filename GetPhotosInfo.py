@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Author:cs.liuxiaoqing@gmail.com
 
-import flickrapi
 import json
 import re
 

@@ -59,7 +59,9 @@ class MySQLCommand(object):
                              "Postdate,OwnerLocation,OwnerTimezone,Geolatitude," \
                              "Geolongitude,Tags,Comments"
 
-
+            OwnerNickname = self.conn.escape(OwnerNickname)
+            OwnerRealname = self.conn.escape(OwnerRealname)
+            Tags = self.conn.escape(Tags)
             Comments = self.conn.escape(Comments)
 
             photo_data = '"'+PhotoUrl+'"'+','\
@@ -73,13 +75,17 @@ class MySQLCommand(object):
                          +'"'+Geolongitude+'"'+','\
                          +'"'+Tags+'"'+','\
                          +'"'+Comments+'"'
+
             sql = "INSERT INTO "+ table + "(%s) VALUES (%s)" %(photo_property,photo_data)
             result = self.cursor.execute(sql)
             id = str(self.conn.insert_id())
             self.conn.commit()
             if result==1:
+
                 return id
+
             else:
                 return '0'
+
         except:
             return '0'
