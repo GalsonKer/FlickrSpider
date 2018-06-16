@@ -17,7 +17,7 @@ def isCollection (flickr,photoId):
 def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
 
     savePath = 'D:\\ProgramData\\FlickrImage\\'
-    tagPattern = re.compile(r'<anhui>')
+    tagPattern = re.compile(r'<NIKON>')
     flickr = flickrapi.FlickrAPI(apiKey, apiPsw,cache=True)
 
     #创建logger新对象

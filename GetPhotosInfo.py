@@ -129,7 +129,7 @@ class GetPhotosInfo(object):
 
     def getPhotoComments(self):
         '''
-        :return:返回用户评论信息;stat=0,没有评论;stat=1
+        :return:返回用户评论信息;
         '''
         comment_str = ''
         comments_rest = self.flickr.photos.comments.getList(photo_id=self.photoId, format='rest')
