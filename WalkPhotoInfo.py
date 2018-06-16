@@ -17,14 +17,14 @@ def isCollection (flickr,photoId):
 def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
 
     savePath = 'D:\\ProgramData\\FlickrImage\\'
-    tagPattern = re.compile(r'<NIKON>|<D300s>')#把相机型号标签洗掉
+    tagPattern = re.compile(r'<NIKON>|<D300s>') # 把相机型号标签洗掉
     flickr = flickrapi.FlickrAPI(apiKey, apiPsw,cache=True)
 
-    #创建logger新对象
+    # 创建logger新对象
     flickrLog = logging.getLogger(name='FlickLogger')
     flickrLog.setLevel(logging.INFO)
 
-    #创建一个输出日志handler
+    # 创建一个输出日志handler
     fh = logging.FileHandler(filename='flickr.log',mode='w')
     fh.setLevel(logging.INFO)
 
@@ -32,7 +32,7 @@ def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
     ch = logging.StreamHandler()
     ch.setLevel(logging.INFO)
 
-    #定义handler格式
+    # 定义handler格式
     formatter = logging.Formatter(
         '%(asctime)s - %(levelname)s: %(message)s')
     fh.setFormatter(formatter)
@@ -54,7 +54,7 @@ def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
         else:
             photos = flickr.walk(text=textStr,has_geo=hasGeo,
                                  privacy_filter=privacyFilter, extras='url_o')
-            #has_geo,设置是否要有地理信息
+            # has_geo,设置是否要有地理信息
 
         for photo in photos:
             url = photo.get('url_o')
