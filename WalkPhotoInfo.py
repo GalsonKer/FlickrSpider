@@ -70,19 +70,27 @@ def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
                 tags = photoInfo.getPhotoTags()
                 comments = photoInfo.getPhotoComments()
 
-                result = mysql.insertData(PhotoUrl=url, PhotoId=photoId,
+                ImgId = mysql.insertData(PhotoUrl=url, PhotoId=photoId,
                                  OwnerNickname=userName, OwnerRealname=realName,
                                  Postdate=postDate, OwnerTimezone=ownerTimezone, OwnerLocation=ownerLocation,
                                  Geolatitude=geolatitude['latitude'],Geolongitude=geolatitude['longitude'],
-                                 Tags=tags['tagStr'], Comments=comments['commentStr'])
-                if result=='0':
+                                 Tags=tags['tagStr'], Comments=comments)
+                if ImgId=='0':
                     flickrLog.info(msg=url+':'+'MySQL存储失败！')
                     continue
                 else:
-                    saveResult = dwi(url=url,imgName=result,savePath=savePath)
+                    saveResult = dwi(url=url, imgName=ImgId, savePath=savePath)
                     if saveResult==1:
-                        flickrLog.info(msg=url+':'+'ID='+result+'下载成功！')
+                        flickrLog.info(msg=url+':'+'ID='+ImgId+'下载成功！')
                     else:
-                        flickrLog.info(msg=url + ':' + 'ID=' + result + '下载失败！')
-    except Exception as e:
+                        againResult = dwi(url=url, imgName=ImgId, savePath=savePath)
+                        #下载一次失败需尝试二次下载，如果还是失败则需要删除数据库中的数据记录
+                        if againResult==1:
+                            flickrLog.info(msg=url+':'+'ID='+ImgId+'下载成功！')
+                        else:
+                            flickrLog.info(msg=url + ':' + 'ID=' + ImgId + '下载失败！')
+                            deleteInfo = mysql.deleteInfo(int(ImgId))
+                            flickrLog.info(deleteInfo['msg'])
+    except Exception:
+
         return 0

@@ -3,6 +3,7 @@
 
 import json
 import re
+from bs4 import BeautifulSoup as bfs
 
 class GetPhotosInfo(object):
 
@@ -130,22 +131,19 @@ class GetPhotosInfo(object):
         '''
         :return:返回用户评论信息;stat=0,没有评论;stat=1
         '''
-
-        commentsInfo = dict()
-        comments_json = self.flickr.photos.comments.getList(photo_id=self.photoId, format='json')
-        comments_dict = json.loads(comments_json)
-        try:
-
-            comments_str = ''
-            for comment in comments_dict['comments']['comment']:
-                comments_str = comments_str + '<'+comment['_content']+'>'
-            pattern = re.compile(r'\n|<a href=".+?</a>|&.+?;')
-            comments_s = re.sub(pattern, '', comments_str)
-            commentsInfo['stat'] = 1
-            commentsInfo['commentStr'] = comments_s
-
-        except:
-            commentsInfo['stat'] = 0
-            commentsInfo['commentStr'] = ''
-
-        return commentsInfo
+        comment_str = ''
+        comments_rest = self.flickr.photos.comments.getList(photo_id=self.photoId, format='rest')
+        comments_lxml = bfs(comments_rest,'lxml')
+        comments = comments_lxml.find_all('comment')
+        for comment in comments:
+            try:
+                commentSearch = re.search(r'>.+?<',str(comment)).group(0)
+                commentS = '{' + re.sub(r'\[.+?\]|<|>|\s|\n',' ',commentSearch) +'}'
+                comment_str = comment_str+commentS
+            except:
+                continue
+        if comment_str=='':
+            return None
+        else:
+            # print(comment_str)
+            return comment_str

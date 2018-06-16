@@ -30,11 +30,11 @@ class MySQLCommand(object):
                     " ( Id int auto_increment primary key," \
                     "Photourl VARCHAR(100) NOT NULL," \
                     "Photoid VARCHAR(100) NOT NULL," \
-                    "OwnerNickname VARCHAR(255) NOT NULL," \
-                    "OwnerRealname VARCHAR(255) NOT NULL," \
+                    "OwnerNickname VARCHAR(255)," \
+                    "OwnerRealname VARCHAR(255)," \
                     "OwnerLocation VARCHAR(255)," \
                     "OwnerTimezone VARCHAR(255)," \
-                    "Postdate VARCHAR(255) NOT NULL," \
+                    "Postdate VARCHAR(255)," \
                     "Geolatitude VARCHAR(255)," \
                     "Geolongitude VARCHAR(255)," \
                     "Tags TEXT," \
@@ -83,9 +83,23 @@ class MySQLCommand(object):
             if result==1:
 
                 return id
-
             else:
                 return '0'
-
         except:
             return '0'
+
+
+    def deleteInfo(self,ID):
+
+        result = dict()
+
+        sql = "DELETE FROM " + self.Photo_table + " WHERE Id = '%d'" %(ID)
+        backInfo = self.cursor.execute(sql)
+        self.conn.commit()
+        result['stat'] = backInfo
+        if backInfo==1:
+            result['msg'] = '已将'+str(ID)+'从数据库中删除！'
+        else:
+            result['msg'] = '删除'+str(ID)+'失败！'
+
+        return result
