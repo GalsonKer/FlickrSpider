@@ -101,5 +101,4 @@ class MySQLCommand(object):
             result['msg'] = '已将'+str(ID)+'从数据库中删除！'
         else:
             result['msg'] = '删除'+str(ID)+'失败！'
-
         return result
