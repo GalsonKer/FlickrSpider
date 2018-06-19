@@ -8,11 +8,6 @@ from GetPhotosInfo import GetPhotosInfo
 from DownloadImage import downLoadImg as dwi
 import logging
 
-
-def isCollection (flickr,photoId):
-    info = flickr.collections.getInfo(photoId)
-    return ''
-
 def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
 
     savePath = 'D:\\ProgramData\\FlickrImage\\'
