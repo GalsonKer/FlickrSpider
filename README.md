@@ -23,7 +23,7 @@ FileFunction
  
 Package&Version
 ==
- Package             Version
+    Package             Version
 ------------------- ---------
  - asn1crypto          0.24.0
  - attrs               18.1.0
