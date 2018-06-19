@@ -7,7 +7,6 @@ import re
 from GetPhotosInfo import GetPhotosInfo
 from DownloadImage import downLoadImg as dwi
 import logging
-import os
 
 
 def isCollection (flickr,photoId):
