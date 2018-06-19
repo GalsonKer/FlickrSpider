@@ -47,6 +47,7 @@ class GetPhotosInfo(object):
             return realname
 
 
+
     def getOwnerTimezone(self):
         '''
         :return: 如果可以过去到所在位置时区信息，则返回，否则返回空
@@ -113,15 +114,19 @@ class GetPhotosInfo(object):
             tagDict['stat'] = 2
             tagDict['tagStr'] = 'ERROR'
 
+
     def getPhotoGeo(self):
+
         photoGeo = self.flickr.photos.getInfo(photo_id=self.photoId,format='json')
         geoInfo = dict()
+
         try:
             geo_dict = json.loads(photoGeo)
             geoInfo['latitude'] = geo_dict['photo']['location']['latitude']
             geoInfo['longitude'] = geo_dict['photo']['location']['longitude']
 
             return geoInfo
+
         except:
             geoInfo['latitude'] = ''
             geoInfo['longitude'] = ''
@@ -134,16 +139,20 @@ class GetPhotosInfo(object):
         comment_str = ''
         comments_rest = self.flickr.photos.comments.getList(photo_id=self.photoId, format='rest')
         comments_lxml = bfs(comments_rest,'lxml')
+
         comments = comments_lxml.find_all('comment')
         for comment in comments:
             try:
-                commentSearch = re.search(r'>.+?<',str(comment)).group(0)
-                commentS = '{' + re.sub(r'\[.+?\]|<|>|\s|\n',' ',commentSearch) +'}'
+                # commentSearch = re.search(r'>.+?<',str(comment)).group(0)
+                commentS = '{' + re.sub(r'\[.+?\]|<.+?>|\s|\n|&.+?;|www\..+?;',' ',str(comment)) +'}'
                 comment_str = comment_str+commentS
+
             except:
+
                 continue
         if comment_str=='':
+
             return None
         else:
-            # print(comment_str)
+
             return comment_str
