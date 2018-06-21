@@ -7,8 +7,9 @@ import re
 from GetPhotosInfo import GetPhotosInfo
 from DownloadImage import downLoadImg as dwi
 import logging
+import json
 
-def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
+def getPhotosId(apiKey,apiPsw,textStr,hasGeo,tableName):
 
     savePath = 'D:\\ProgramData\\FlickrImage\\'
     # 把相机型号标签洗掉
@@ -44,43 +45,47 @@ def getPhotosId(apiKey,apiPsw,textStr,hasGeo,privacyFilter,tableName):
     try:
         # 爬取text为Hongcun的照片，这里可以根据需要设置其他参数
         if hasGeo==None:
-            photos = flickr.walk(text=textStr, privacy_filter=privacyFilter,
-                                 extras='url_o')
+            photos_json = flickr.photos.search(text=textStr,per_page=300,page=6,extras='url_z',format='json')
         else:
-            photos = flickr.walk(text=textStr,has_geo=hasGeo,
-                                 privacy_filter=privacyFilter, extras='url_o')
+            photos_json = flickr.photos.search(text=textStr,has_geo=hasGeo,per_page=300,page=6,extras='url_z',format='json')
             # has_geo,设置是否要有地理信息
-
+        photos_dict = json.loads(photos_json)
+        photos = photos_dict['photos']['photo']
+        print(len(photos))
         for photo in photos:
-            url = photo.get('url_o')
-            if url != None:
-                photoId = re.split('/|_', url)[4]
-                photoInfo = GetPhotosInfo(flickr=flickr,photoId=photoId,tag_pattern=tagPattern)
-                userName = photoInfo.getOwnerUsername()
-                realName = photoInfo.getOwnerRealname()
-                postDate = photoInfo.getPostDare();
-                ownerTimezone = photoInfo.getOwnerTimezone()
-                ownerLocation = photoInfo.getOwnerLocation()
-                geolatitude = photoInfo.getPhotoGeo()
-                tags = photoInfo.getPhotoTags()
-                comments = photoInfo.getPhotoComments()
+            try:
+                url = photo['url_z']
+                if url!=None:
 
-                ImgId = mysql.insertData(PhotoUrl=url, PhotoId=photoId,
-                                 OwnerNickname=userName, OwnerRealname=realName,
-                                 Postdate=postDate, OwnerTimezone=ownerTimezone, OwnerLocation=ownerLocation,
-                                 Geolatitude=geolatitude['latitude'],Geolongitude=geolatitude['longitude'],
-                                 Tags=tags['tagStr'], Comments=comments)
-                if ImgId=='0':
-                    flickrLog.info(msg=url+':'+'MySQL存储失败！')
-                    continue
-                else:
-                    for i in range(5):#考虑到网络问题，所以设置失败再四次机会
-                        saveResult = dwi(url=url, imgName=ImgId, savePath=savePath)
-                        if saveResult==1:
-                            flickrLog.info(msg=url+':'+'ID='+ImgId+'下载成功！')
-                            break
-                    if saveResult!=1:
-                        print(msg=url+':'+'ID='+ImgId+'下载失败！')
-    except Exception:
-
+                    photoId = photo['id']
+                    photoInfo = GetPhotosInfo(flickr=flickr,photoId=photoId,tag_pattern=tagPattern)
+                    userName = photoInfo.getOwnerUsername()
+                    realName = photoInfo.getOwnerRealname()
+                    postDate = photoInfo.getPostDare();
+                    ownerTimezone = photoInfo.getOwnerTimezone()
+                    ownerLocation = photoInfo.getOwnerLocation()
+                    geolatitude = photoInfo.getPhotoGeo()
+                    tags = photoInfo.getPhotoTags()
+                    comments = photoInfo.getPhotoComments()
+                    ImgId = mysql.insertData(PhotoUrl=url, PhotoId=photoId,
+                                     OwnerNickname=userName, OwnerRealname=realName,
+                                     Postdate=postDate, OwnerTimezone=ownerTimezone, OwnerLocation=ownerLocation,
+                                     Geolatitude=geolatitude['latitude'],Geolongitude=geolatitude['longitude'],
+                                     Tags=tags['tagStr'], Comments=comments)
+                    if ImgId=='0':
+                        flickrLog.info(msg=url+':'+'MySQL存储失败！')
+                        continue
+                    else:
+                        for i in range(5):#考虑到网络问题，所以设置失败再四次机会
+                            saveResult = dwi(url=url, imgName=ImgId, savePath=savePath)
+                            if saveResult==1:
+                                flickrLog.info(msg=url+':'+'ID='+ImgId+'下载成功！')
+                                break
+                        if saveResult!=1:
+                            print(msg=url+':'+'ID='+ImgId+'下载失败！')
+            except:
+                continue
+        print('正常结束！')
+    except Exception as e:
+        print(e)
         return 0

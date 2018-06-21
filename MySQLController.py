@@ -12,6 +12,7 @@ class MySQLCommand(object):
         self.password = "lyp82nlf"       # 密码
         self.db = "gsk"                  # 库
         self.Photo_table = tableName     # 表
+        self.use_unicode = True
         self.charset ='utf8mb4'          # 编码使用utf8mb4可以存储emoji表情符号
 
         # 链接数据库
@@ -38,7 +39,7 @@ class MySQLCommand(object):
                     "Geolatitude VARCHAR(255)," \
                     "Geolongitude VARCHAR(255)," \
                     "Tags TEXT," \
-                    "Comments TEXT)AUTO_INCREMENT=1"
+                    "Comments TEXT)AUTO_INCREMENT=1380"
 
 
         delete_sql = "drop table if exists "+ self.Photo_table

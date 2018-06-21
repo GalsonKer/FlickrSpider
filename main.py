@@ -16,9 +16,12 @@ if __name__=="__main__":
         if the value is "0" any photo that has not been geotagged.
     '''
 
-    apiKey = input('请输入您的Flickr授权账号：')
-    apiPsw = input('请输入账户密钥：')
-    textStr = input('请输入搜索主题：')
-    result = WalkPhotoInfo.getPhotosId(apiKey=apiKey, apiPsw=apiPsw,privacyFilter=1,
+    # apiKey = input('请输入您的Flickr授权账号：')
+    # apiPsw = input('请输入账户密钥：')
+    # textStr = input('请输入搜索主题：')
+    apiKey = '39d4c3d73475ba6260c370044a843b04'
+    apiPsw = '19ddd6456f94172b'
+    textStr = 'Hongcun'
+    result = WalkPhotoInfo.getPhotosId(apiKey=apiKey, apiPsw=apiPsw,
                                        hasGeo=1, textStr=textStr,
                                        tableName="PhotoData")

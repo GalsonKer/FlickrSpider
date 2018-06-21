@@ -138,13 +138,13 @@ class GetPhotosInfo(object):
         '''
         comment_str = ''
         comments_rest = self.flickr.photos.comments.getList(photo_id=self.photoId, format='rest')
-        comments_lxml = bfs(comments_rest,'lxml')
+        comments_lxml = bfs(comments_rest,'lxml',from_encoding='utf8')
 
         comments = comments_lxml.find_all('comment')
         for comment in comments:
             try:
                 # commentSearch = re.search(r'>.+?<',str(comment)).group(0)
-                commentS = '{' + re.sub(r'\[.+?\]|<.+?>|\s|\n|&.+?;|www\..+?;',' ',str(comment)) +'}'
+                commentS = '{' + re.sub(r'\[.+?\]|<[^>]+>|\s|\n|&.+?;|www\..+?;',' ',str(comment)) +'}'
                 comment_str = comment_str+commentS
 
             except:
