@@ -39,7 +39,7 @@ class MySQLCommand(object):
                     "Geolatitude VARCHAR(255)," \
                     "Geolongitude VARCHAR(255)," \
                     "Tags TEXT," \
-                    "Comments TEXT)AUTO_INCREMENT=1380"
+                    "Comments TEXT)AUTO_INCREMENT=1"
 
 
         delete_sql = "drop table if exists "+ self.Photo_table
