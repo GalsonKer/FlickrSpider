@@ -2,18 +2,23 @@
 # Author:cs.liuxiaoqing@gmail.com
 
 import pymysql
+import yaml,os
 
 class MySQLCommand(object):
     # 类的初始化
-    def __init__(self,tableName):
-        self.host = 'localhost'
-        self.port = 3306                 # 端口号
-        self.user = 'root'               # 用户名
-        self.password = "lyp82nlf"       # 密码
-        self.db = "gsk"                  # 库
-        self.Photo_table = tableName     # 表
-        self.use_unicode = True
-        self.charset ='utf8mb4'          # 编码使用utf8mb4可以存储emoji表情符号
+    def __init__(self):
+        with open('MySQLSetting.yml','r') as fp:
+            Mysql = yaml.load(fp)
+        MySQLInfo = Mysql['MySQL']
+
+        self.host = MySQLInfo['Host']
+        self.port = MySQLInfo['Port']               # 端口号
+        self.user = MySQLInfo['User']               # 用户名
+        self.password = MySQLInfo['Password']       # 密码
+        self.db = MySQLInfo['Database']             # 库
+        self.Photo_table = MySQLInfo['Tablename']   # 表
+        self.use_unicode = MySQLInfo['UseUnicode']
+        self.charset = MySQLInfo['Charset']         # 编码使用utf8mb4可以存储emoji表情符号
 
         # 链接数据库
     def connectMysql(self):

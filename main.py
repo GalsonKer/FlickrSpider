@@ -2,6 +2,7 @@
 # Author:cs.liuxiaoqing@gmail.com
 
 import WalkPhotoInfo
+import yaml,os
 
 if __name__=="__main__":
     '''
@@ -16,9 +17,19 @@ if __name__=="__main__":
         if the value is "0" any photo that has not been geotagged.
     '''
 
-    apiKey = input('请输入您的Flickr授权账号：')
-    apiPsw = input('请输入账户密钥：')
     textStr = input('请输入搜索主题：')
-    result = WalkPhotoInfo.getPhotosId(apiKey=apiKey, apiPsw=apiPsw,
-                                       hasGeo=1, textStr=textStr,
-                                       tableName="PhotoData")
+    '''
+    per_page:最大可以是250
+    hasGeo:1为含有地理信息，0为不含，None为全部
+    tableName:为MySQL数据库中表的名称
+    MySQL_User:MySQL数据库名
+    MySQL_Psw:MySQL密码
+    MySQL_Db:MySQL数据库名称
+    '''
+    with open('APISetting.yml','r') as fp:
+        ApiInfo = yaml.load(fp)
+    result = WalkPhotoInfo.getPhotosId(apiKey=ApiInfo['ApiKey'],
+                                       apiPsw=ApiInfo['ApiSecret'],
+                                       hasGeo=ApiInfo['hasGeo'],
+                                       textStr=textStr,
+                                       per_page=ApiInfo['per_page'])

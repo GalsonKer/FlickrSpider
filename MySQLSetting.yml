@@ -1,0 +1,11 @@
+#MySQLÅäÖÃÎÄ¼ş£¡
+
+MySQL:
+  Host: localhost
+  User: root
+  Password: lyp82nlf
+  Database: gsk
+  Tablename: photodata
+  Port: 3306
+  UseUnicode: True
+  Charset: utf8mb4

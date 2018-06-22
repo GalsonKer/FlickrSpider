@@ -1,0 +1,10 @@
+# ApiKey:是Flickr开发账号
+# ApiSecret:Flickr开发账号密码
+# hasGeo:1为有地理信息，0为没有地理信息，2为不区分此项
+# per_page:每次获取的数据有多少条，最大数目是250
+
+ApiKey:
+ApiSecret:
+hasGeo:
+per_page:
+
