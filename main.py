@@ -32,4 +32,5 @@ if __name__=="__main__":
                                        apiPsw=ApiInfo['ApiSecret'],
                                        hasGeo=ApiInfo['hasGeo'],
                                        textStr=textStr,
-                                       per_page=ApiInfo['per_page'])
+                                       per_page=ApiInfo['per_page'],
+                                       savePath=ApiInfo['savePath'])

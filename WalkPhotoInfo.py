@@ -9,9 +9,9 @@ from DownloadImage import downLoadImg as dwi
 import logging
 import json
 
-def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo):
+def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath):
 
-    savePath = 'D:\\ProgramData\\FlickrImage\\'
+
     # 把相机型号标签洗掉
     tagPattern = re.compile(r'<NIKON.*?>|<D300.*?>|<CZJ.*?>|<m42>|<smc.*?>')
     flickr = flickrapi.FlickrAPI(apiKey, apiPsw,cache=True)
