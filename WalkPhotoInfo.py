@@ -98,10 +98,10 @@ def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath):
                                 if saveResult != 1:
                                     flickrLog.info(url + ':' + 'ID=' + ImgId + '下载失败！')
                     except Exception as e:
-                        flickrLog.info('An Exceptoin Has Been Solved!'+str(e))
+                        flickrLog.info('An Exceptoin Has Been Solved!'+repr(e))
                         continue
             except Exception as e:
-                flickrLog.info('PageError:'+'获取第'+str(page)+'页数据异常:' + str(e))
+                flickrLog.info('PageError:'+'获取第'+str(page)+'页数据异常:' + repr(e))
     except Exception as e:
-        flickrLog.info('获取页面页面数据页数异常:' + str(e))
+        flickrLog.info('获取页面页面数据页数异常:' + repr(e))
 

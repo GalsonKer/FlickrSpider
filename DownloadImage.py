@@ -10,5 +10,6 @@ def downLoadImg(url,imgName,savePath):
         file = savePath+imgName+'.'+imgType
         request.urlretrieve(url,file)
         return 1
-    except:
+    except Exception as e:
+        print(repr(e))
         return 0
