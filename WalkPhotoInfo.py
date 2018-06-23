@@ -66,8 +66,8 @@ def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath):
                 for photo in photos:
                     try:
                         url = photo['url_z']
-                        if url != None:
 
+                        if url != None:
                             photoId = photo['id']
                             photoInfo = GetPhotosInfo(flickr=flickr, photoId=photoId, tag_pattern=tagPattern)
                             userName = photoInfo.getOwnerUsername()
@@ -98,11 +98,10 @@ def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath):
                                 if saveResult != 1:
                                     flickrLog.info(url + ':' + 'ID=' + ImgId + '下载失败！')
                     except Exception as e:
-                        flickrLog('An Exceptoin Has Been Solved!'+str(e))
+                        flickrLog.info('An Exceptoin Has Been Solved!'+str(e))
                         continue
             except Exception as e:
                 flickrLog.info('PageError:'+'获取第'+str(page)+'页数据异常:' + str(e))
-            pass
     except Exception as e:
         flickrLog.info('获取页面页面数据页数异常:' + str(e))
 
