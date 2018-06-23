@@ -1,8 +1,7 @@
-# ApiKey:ÊÇFlickr¿ª·¢ÕËºÅ
-# ApiSecret:Flickr¿ª·¢ÕËºÅÃÜÂë
-# hasGeo:1ÎªÓĞµØÀíĞÅÏ¢£¬0ÎªÃ»ÓĞµØÀíĞÅÏ¢£¬2Îª²»Çø·Ö´ËÏî
-# per_page:Ã¿´Î»ñÈ¡µÄÊı¾İÓĞ¶àÉÙÌõ£¬×î´óÊıÄ¿ÊÇ250
-
+# ApiKey:æ˜¯Flickrå¼€å‘è´¦å·
+# ApiSecret:Flickrå¼€å‘è´¦å·å¯†ç 
+# hasGeo:1ä¸ºæœ‰åœ°ç†ä¿¡æ¯ï¼Œ0ä¸ºæ²¡æœ‰åœ°ç†ä¿¡æ¯ï¼Œ2ä¸ºä¸åŒºåˆ†æ­¤é¡¹
+# per_page:æ¯æ¬¡è·å–çš„æ•°æ®æœ‰å¤šå°‘æ¡ï¼Œæœ€å¤§æ•°ç›®æ˜¯250
 ApiKey: Your Apikey
 ApiSecret: Apikey's Secret
 hasGeo: 1
