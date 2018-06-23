@@ -7,7 +7,7 @@ import yaml,os
 class MySQLCommand(object):
     # 类的初始化
     def __init__(self):
-        with open('MySQLSetting.yml','r') as fp:
+        with open('MySQLSetting.yml','r',encoding='UTF-8') as fp:
             Mysql = yaml.load(fp)
         MySQLInfo = Mysql['MySQL']
 

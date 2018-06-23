@@ -26,7 +26,7 @@ if __name__=="__main__":
     MySQL_Psw:MySQL密码
     MySQL_Db:MySQL数据库名称
     '''
-    with open('APISetting.yml','r') as fp:
+    with open('APISetting.yml','r',encoding='UTF-8') as fp:
         ApiInfo = yaml.load(fp)
     result = WalkPhotoInfo.getPhotosId(apiKey=ApiInfo['ApiKey'],
                                        apiPsw=ApiInfo['ApiSecret'],
