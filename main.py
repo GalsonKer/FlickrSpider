@@ -33,4 +33,5 @@ if __name__=="__main__":
                                        hasGeo=ApiInfo['hasGeo'],
                                        textStr=textStr,
                                        per_page=ApiInfo['per_page'],
-                                       savePath=ApiInfo['savePath'])
+                                       savePath=ApiInfo['savePath'],
+                                       extras=ApiInfo['extras'])

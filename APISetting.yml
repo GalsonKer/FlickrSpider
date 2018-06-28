@@ -2,8 +2,25 @@
 # ApiSecret:Flickr开发账号密码
 # hasGeo:1为有地理信息，0为没有地理信息，2为不区分此项
 # per_page:每次获取的数据有多少条，最大数目是250
+
+#url选择
+#    s	小正方形 75x75
+#    q	large square 150x150
+#    t	縮圖，最長邊為 100
+#    m	小，最長邊為 240
+#    n	small, 320 on longest side
+#    -	中等，最長邊為 500
+#    z	中等尺寸 640，最長邊為 640
+#    c	中等尺寸 800，最長邊為 800†
+#    b	大尺寸，最長邊為 1024*
+#    h	大型 1600，長邊 1600†
+#    k	大型 2048，長邊 2048†
+#    o	原始圖片, 根據來源格式可以是 jpg、gif 或 png
+
+
 ApiKey: 39sd4c3d73475ba6260c370044a843b04
 ApiSecret: 19ddd6456f94172b
 hasGeo: 1
 per_page: 200
+extras: url_z
 savePath: D://ProgramData//FlickrImage//

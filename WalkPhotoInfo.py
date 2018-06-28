@@ -9,7 +9,7 @@ from DownloadImage import downLoadImg as dwi
 import logging
 import json
 
-def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath):
+def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath,extras):
 
 
     # 把相机型号标签洗掉
@@ -46,9 +46,9 @@ def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath):
     try:
         # 爬取text为Hongcun的照片，这里可以根据需要设置其他参数
         if hasGeo == 2:
-            page_json = flickr.photos.search(text=textStr,per_page=per_page,extras='url_z',format='json')
+            page_json = flickr.photos.search(text=textStr,per_page=per_page,extras=extras,format='json')
         else:
-            page_json = flickr.photos.search(text=textStr,has_geo=hasGeo,per_page=per_page,extras='url_z',format='json')
+            page_json = flickr.photos.search(text=textStr,has_geo=hasGeo,per_page=per_page,extras=extras,format='json')
             # has_geo,设置是否要有地理信息
         page_dict = json.loads(page_json)
         pages = page_dict['photos']['pages']
@@ -57,15 +57,15 @@ def getPhotosId(apiKey,apiPsw,textStr,per_page,hasGeo,savePath):
             flickrLog.info('开始获取第'+str(page)+'页数据！')
             try:
                 if hasGeo == 2:
-                    photos_json = flickr.photos.search(text=textStr, per_page=per_page, extras='url_z', format='json')
+                    photos_json = flickr.photos.search(text=textStr, per_page=per_page, extras=extras, format='json')
                 else:
-                    photos_json = flickr.photos.search(text=textStr, has_geo=hasGeo, per_page=per_page, extras='url_z',
+                    photos_json = flickr.photos.search(text=textStr, has_geo=hasGeo, per_page=per_page, extras=extras,
                                                        format='json')
                 photos_dict = json.loads(photos_json)
                 photos = photos_dict['photos']['photo']
                 for photo in photos:
                     try:
-                        url = photo['url_z']
+                        url = photo[extras]
 
                         if url != None:
                             photoId = photo['id']
