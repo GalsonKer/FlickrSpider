@@ -1,6 +1,6 @@
 FlickrSpider
 ==
-@Author:GalsonKer
+@Author:Liou Siaocing
 **cs.liuxiaoqing@gmail.com**
 
  - SearchText:输入搜索主题 在flickr上获取关于主题的图片
@@ -19,7 +19,7 @@ FileFunction
  - GetPhotosInfo.py:获取图像信息功能函数文件
  - DownloadImage.py:下载图片到本地
  - MySQLController.py:数据库操作
- - WalkPhotoInfo.py:爬去图像信息并存储到本地数据库中
+ - WalkPhotoInfo.py:爬取图像信息并存储到本地数据库中
  
 Package&Version
 ==
@@ -54,5 +54,5 @@ Package&Version
  声明
  --
  
- 由于个人时间原因，对于个别会因为编码问题抛出异常，暂时没有完全处理，以及数据库信息的设置比较简陋，所以欢迎fork指教，我会在后续的学习和工作中不断地完善。
+ 由于某些技术原因，对于个别会因为编码问题抛出异常，暂时没有完全处理，以及数据库信息的设置比较简陋也许会在后续的学习和工作中不断地完善。
  
